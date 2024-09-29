@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Archive</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #4a7c2c; /* earthy green */
+        }
+        .video-container {
+            margin: 20px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .video-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            iframe {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>The Archive</h1>
+
+    <div class="video-container">
+        <h2>Revenge Thriller</h2>
+        <iframe src="https://player.vimeo.com/video/948364637?h=cea7fbc022" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <p><a href="https://vimeo.com/948364637">Revenge Thriller (Dir: Abeeeshen)</a> from <a href="https://vimeo.com/user132483329">Abeeeshen</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+    </div>
+
+    <div class="video-container">
+        <h2>Paranoid</h2>
+        <iframe src="https://player.vimeo.com/video/1009649526?h=89342573b5" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <p><a href="https://vimeo.com/1009649526">Paranoid (Dir: Abeeeshen)</a> from <a href="https://vimeo.com/user132483329">Abeeeshen</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+    </div>
+
+    <div class="video-container">
+        <h2>Tu no me querías - Uriel Benitez (Dir: Abeeeshen)</h2>
+        <iframe src="https://player.vimeo.com/video/1012406385?h=743d6e32d7" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <p><a href="https://vimeo.com/1012406385">Tu no me quer&iacute;as - Uriel Benitez (Dir: Abeeeshen)</a> from <a href="https://vimeo.com/user132483329">Abeeeshen</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+    </div>
+
+    <div class="video-container">
+        <h2>DIR/EDIT REEL (2024)</h2>
+        <iframe src="https://player.vimeo.com/video/796138679?h=7e80628f20" width="640" height="320" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <p><a href="https://vimeo.com/796138679">DIR/EDIT REEL (2024)</a> from <a href="https://vimeo.com/user132483329">Abeeeshen</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+    </div>
+
+    <script>
+        const videoContainers = document.querySelectorAll('.video-container');
+
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const callback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(callback, options);
+        videoContainers.forEach(container => {
+            observer.observe(container);
+        });
+    </script>
+</body>
+</html>
